@@ -46,8 +46,8 @@ Use option `--afx=afx1_afx2_..`. If multiple FX are used, they will be in the fo
 |                | Hybrid Neural Proxy        | `comphalf`  |
 |                | Simplifide DSP Compressor  | `compsimple`|
 | **Distortion** | Parametric clipper         | `dist`      |
-|                | Taylor distortion model    | `compsimple`|
-|                | Chebyshev distortion model | `compsimple`|
+|                | Taylor distortion model    | `taylor`    |
+|                | Chebyshev distortion model | `chebyshev` |
 
 #### Analysis Network Encoder
 
