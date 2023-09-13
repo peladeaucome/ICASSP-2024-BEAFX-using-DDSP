@@ -6,7 +6,7 @@
 Github repository for the paper submitted to ICASSP 2024 : Blind estimation of audio effects using an auto-encoder approach and differentiable signal processing
 
 ```
-This gihub repo is still work in progress.
+This Github repo is still work in progress.
 ```
 
 ## How to use
