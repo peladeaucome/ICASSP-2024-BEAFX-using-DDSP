@@ -1,0 +1,8 @@
+auraloss==0.3.0
+nnAudio==0.3.1
+numpy==1.23.5
+scipy==1.10.0
+PyYAML==6.0
+torch==1.13.1
+torchaudio==0.13.1
+torchinfo==1.7.2

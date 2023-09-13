@@ -1,0 +1,6 @@
+model_params:
+  n_fft: 1024
+  num_params: 20
+  kernels: [[33, 33], [33, 33], [33, 33], [33, 33], [33, 33]]
+  channels_list: [16, 32, 64, 128, 256]
+  mlp_layers: [1024, 1024, 512]

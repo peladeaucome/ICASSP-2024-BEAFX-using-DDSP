@@ -1,0 +1,15 @@
+model_config:
+  model_type: compressor
+  kernel_size: 9
+  nblocks: 4
+  stack_size: 10
+  skip_connections: False
+  causal: True
+  dilation_growth: 8
+  channel_width: 8
+  explicit_makeup: True
+  explicit_thresh: True
+training_config:
+  num_epochs: 60
+  loss_type: l1+stft
+  dataset: full

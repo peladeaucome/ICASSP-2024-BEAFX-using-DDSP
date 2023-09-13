@@ -1,0 +1,39 @@
+compressor_controls:
+  threshold_dB: [-20, 0]
+  attack_time: [5, 30]
+  release_time: [20, 300]
+  ratio: [2, 5]
+  knee_dB: [0, 6]
+  makeup_gain_dB: [0, 20]
+
+
+lowShelf_controls:
+  gain_dB: [-10, 10]
+  Q: [0.3, 1.5]
+  f0: [30, 80]
+
+peak1_controls:
+  gain_dB: [-10, 10]
+  Q: [0.3, 1.5]
+  f0: [200, 1000]
+
+peak2_controls:
+  gain_dB: [-10, 10]
+  Q: [0.3, 1.5]
+  f0: [1000, 3000]
+
+peak3_controls:
+  gain_dB: [-10, 10]
+  Q: [0.3, 1.5]
+  f0: [4000, 8000]
+
+highShelf_controls:
+  gain_dB: [-10, 10]
+  Q: [0.3, 1.5]
+  f0: [10000, 16000]
+
+
+distortion_controls:
+  drive_dB: [-5,10]
+  offset: [0, 1]
+  dist_choice: [0, 2]
