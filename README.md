@@ -9,6 +9,8 @@ Github repository for the paper submitted to ICASSP 2024 : Blind estimation of a
 This Github repo is still work in progress.
 ```
 
+![image](Images/Controller_Network_train_english.svg)
+
 ## How to use
 
 Works in `Python 3.10.9`.

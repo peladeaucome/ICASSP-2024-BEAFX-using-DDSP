@@ -28,6 +28,7 @@ from torchinfo import summary
 from torch.utils.tensorboard import SummaryWriter
 
 from argparse import ArgumentParser
+
 parser = ArgumentParser()
 parser.add_argument('--config_path', type = str, default = 'configs/compressor/compressor_Rf3000.yaml')
 parser.add_argument('--encoder', type = str, default = 'equaliser')

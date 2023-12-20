@@ -5,6 +5,7 @@ import audio_effects.base
 
 
 class FXChain(audio_effects.base.FXBase):
+    """Class used to group multiple FX into one chain."""
     def __init__(
         self,
         norm = 'max'):
@@ -34,6 +35,7 @@ class FXChain(audio_effects.base.FXBase):
         return q
     
     def append_FX(self, FX_module):
+        """Adds the effect `FX_module` to the chain."""
         self.module_list.append(FX_module)
         
         old_num = self.num_controls
@@ -52,6 +54,7 @@ class FXChain(audio_effects.base.FXBase):
             self.controls_names.append(name)
 
     def process(self, x, q):
+        """Processes `x` through the chain of effects with normalized parameters `q`."""
         control_index = 0
         for i, module in enumerate(self.module_list):
             x = x - torch.mean(x, 2).reshape(-1, 1, 1)
@@ -61,11 +64,13 @@ class FXChain(audio_effects.base.FXBase):
         return x
 
     def max_norm(self, x):
+        """Normalizes the audio `x` to 0dBFS."""
         xmax, _ = torch.max(torch.abs(x), dim=2)
         x=x/(xmax.reshape(-1, 1, 1))
         return x
 
     def rms_norm(self, x):
+        """Normalizes the audio `x` to 0dB RMS."""
         x = x/(torch.std(x, dim=2).reshape(-1, 1, 1))
         return x
 
