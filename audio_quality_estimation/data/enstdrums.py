@@ -34,7 +34,7 @@ class ENSTDrums_Extracts(Dataset):
             controls_ranges_dicts_list:list,
             effects_aug:list=[],
             controls_ranges_aug:list=[],
-            root_dir:str = '/tsi/data_doctorants/peladeau/data/ENST-drums_extracts',
+            root_dir:str = '',
             controls_ranges_path:str='configs/synthesis_controls_ranges.yaml',
             random_polarity:bool = True,
             songs_list_path:str = 'none',

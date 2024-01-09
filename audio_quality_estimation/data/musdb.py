@@ -33,8 +33,8 @@ class MUSDB18_Dataset(Dataset):
     def __init__(
             self,
             FX_Chain,
-            root_dir:str = 'Path/To/MUSBD18',
-            is_wav=True,
+            root_dir:str,
+            is_wav=False,
             random_polarity:bool = True,
             subsets = 'train',
             samplerate=44100,

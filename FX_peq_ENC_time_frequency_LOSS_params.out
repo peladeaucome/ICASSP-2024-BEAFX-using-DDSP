@@ -1,0 +1,138 @@
++ loss=params
++ encoder=time_frequency
++ afx=peq
++ sfx=peq
++ python train_analysis_net.py --encoder=time_frequency --afx=peq --sfx=peq --loss=params --prefix= --suffix=
+[rank: 0] Seed set to 0
+cuda:0
+Learning rate : 0.0001
+quality/_SFX_peq_AFX_peq_ENC_time_frequency_LOSS_params_
+15
+['f0', 'gain_dB', 'Q', 'f0', 'gain_dB', 'Q', 'f0', 'gain_dB', 'Q', 'f0', 'gain_dB', 'Q', 'f0', 'gain_dB', 'Q']
+tensor([[ 3.0000e+01,  1.6000e+02],
+        [-1.5000e+01,  1.5000e+01],
+        [ 1.0000e-01,  2.0000e+00],
+        [ 1.0000e+02,  2.0000e+03],
+        [-1.5000e+01,  1.5000e+01],
+        [ 1.0000e-01,  2.0000e+00],
+        [ 5.0000e+02,  6.0000e+03],
+        [-1.5000e+01,  1.5000e+01],
+        [ 1.0000e-01,  2.0000e+00],
+        [ 2.0000e+03,  1.6000e+04],
+        [-1.5000e+01,  1.5000e+01],
+        [ 1.0000e-01,  2.0000e+00],
+        [ 5.0000e+03,  2.0000e+04],
+        [-1.5000e+01,  1.5000e+01],
+        [ 1.0000e-01,  2.0000e+00]])
+Creating CQT kernels ...CQT kernels created, time used = 0.1174 seconds
+CQT kernel width : 32768
+=================================================================
+Layer (type:depth-idx)                   Param #
+=================================================================
+Controller_Network                       --
+├─TimeFrequencyCQT_Encoder: 1-1          --
+│    └─CQT1992v2: 2-1                    --
+│    └─TimeCQT_Encoder: 2-2              --
+│    │    └─Sequential: 3-1              8,385
+│    │    └─Sequential: 3-2              127,169
+│    └─FrequencyCQT_Encoder: 2-3         --
+│    │    └─Sequential: 3-3              2,561
+│    │    └─Sequential: 3-4              315,585
+├─Sequential: 1-2                        --
+│    └─Linear: 2-4                       264,192
+│    └─BatchNorm1d: 2-5                  4,096
+│    └─PReLU: 2-6                        1
+│    └─Linear: 2-7                       2,098,176
+│    └─BatchNorm1d: 2-8                  2,048
+│    └─PReLU: 2-9                        1
+│    └─Linear: 2-10                      524,800
+│    └─BatchNorm1d: 2-11                 1,024
+│    └─PReLU: 2-12                       1
+│    └─Linear: 2-13                      7,695
+│    └─Sigmoid: 2-14                     --
+=================================================================
+Total params: 3,355,734
+Trainable params: 3,355,734
+Non-trainable params: 0
+=================================================================
+Batch Size : 16
+86
+Training dataset length : 86
+Validation dataset length : 14
+Test dataset length : 50
+Training Loops : 5
+Validation Loops : 5
+Test Loops : 10
+Test Loss (Random FX): tensor([1.6934, 0.8250, 0.8837], device='cuda:0')
+Test Loss (Without FX): tensor([1.2449, 0.4951, 0.6339], device='cuda:0')
+Starting eval time : 303.6067416667938
+
+Epoch : 0
+Best validation : 0.8161818385124207
+Training Loss : 0.8989842534065247
+Epoch : 2
+Best validation : 0.8022939562797546
+Training Loss : 0.7926867008209229
+Epoch : 3
+Best validation : 0.7608886361122131
+Training Loss : 0.7842721343040466
+Epoch : 4
+Best validation : 0.7558088898658752
+Training Loss : 0.7882580161094666
+Epoch : 7
+Best validation : 0.7410937547683716
+Training Loss : 0.7722123265266418
+Epoch : 9
+Best validation : 0.739460289478302
+Training Loss : 0.7610074281692505
+Epoch : 11
+Best validation : 0.7021796703338623
+Training Loss : 0.7568114995956421
+Epoch : 40
+Decreased learning rate.
+Epoch : 56
+Best validation : 0.7009099721908569
+Training Loss : 0.7257237434387207
+Epoch : 58
+Best validation : 0.6988752484321594
+Training Loss : 0.7349852323532104
+Epoch : 59
+Best validation : 0.6852985620498657
+Training Loss : 0.7107075452804565
+Epoch : 74
+Best validation : 0.6740522384643555
+Training Loss : 0.7422307729721069
+Epoch : 83
+Best validation : 0.6628010869026184
+Training Loss : 0.6902178525924683
+Epoch : 112
+Decreased learning rate.
+Epoch : 142
+Decreased learning rate.
+Epoch : 172
+Decreased learning rate.
+Epoch : 202
+Decreased learning rate.
+Epoch : 214
+Best validation : 0.6471135020256042
+Training Loss : 0.7102187275886536
+Epoch : 243
+Decreased learning rate.
+Epoch : 273
+Decreased learning rate.
+Epoch : 303
+Decreased learning rate.
+Epoch : 333
+Decreased learning rate.
+Epoch : 363
+Decreased learning rate.
+Epoch : 363
+Stopped Training
+Training Time : 15.43 hours
+Mean Time per Epoch : 153.04s
+Traceback (most recent call last):
+  File "/home/ids/peladeau/ICASSP-2024-BEAFX-using-DDSP/train_analysis_net.py", line 677, in <module>
+    main()
+  File "/home/ids/peladeau/ICASSP-2024-BEAFX-using-DDSP/train_analysis_net.py", line 653, in main
+    params_loss+=MSE_loss(q_hat, q)*10*estimate.size(0)
+NameError: name 'MSE_loss' is not defined

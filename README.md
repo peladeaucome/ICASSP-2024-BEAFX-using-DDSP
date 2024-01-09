@@ -65,7 +65,19 @@ Use option `--encoder=key`.
 
 Use option `--loss=key`
 
-| Loss                                                                       | Key      |
-|----------------------------------------------------------------------------|----------|
-| Audio Mel-Spectrogram $\mathcal{L}_\text{Mel}(\hat{\mathbf{y}},\mathbf{y})$| `mel`    | 
-| Parameters $\text{MSE}(\hat{\mathbf{q}},\mathbf{q})$                       | `params` | 
+| Loss                                                                        | Key      |
+|-----------------------------------------------------------------------------|----------|
+| Audio Mel-Spectrogram $\mathcal{L}_\text{Mel}(\hat{\mathbf{y}},\mathbf{y})$ | `mel`    | 
+| Parameters $\text{MSE}(\hat{\mathbf{q}},\mathbf{q})$                        | `params` | 
+
+## Some results
+### EQ matching
+
+On the figure below, the both synthesis and analysis EQs are parametric.
+The blue curve is the equalization curve estimated by a network trained with our approach.
+The orange curve is estimated by a network trained to minimize parameter distance.
+
+In this example, the orange curve is actually closer to the ground truth than the blue in terms of parameter distance $\text{MSE}(\hat{\mathbf{q}},\mathbf{q})$ despite being further in terms of audio distance.
+
+
+![image](Images/EQ_Matching.png)
