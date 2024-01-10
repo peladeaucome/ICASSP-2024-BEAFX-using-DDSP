@@ -22,7 +22,7 @@ title: Blind estimation of audio effects using an auto-encoder approach and diff
 email: come.peladeau@telecom-paris.fr
 description: >- # this means to ignore newlines until "baseurl:"
 This website showcases additional material to the article "Blind estimation of audio effects using an auto-encoder approach and differentiable signal processing" to be published in ICASSP 2024
-baseurl: "ICASSP-2024-BEAFX-using-DDSP" # the subpath of your site, e.g. /blog
+baseurl: "/ICASSP-2024-BEAFX-using-DDSP" # the subpath of your site, e.g. /blog
 url: "https://peladeaucome.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  peladeaucome
