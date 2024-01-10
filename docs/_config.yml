@@ -21,7 +21,9 @@
 title: Blind estimation of audio effects using an auto-encoder approach and differentiable signal processing
 email: come.peladeau@telecom-paris.fr
 description: >- # this means to ignore newlines until "baseurl:"
-  This website showcases additional material to the article "Blind estimation of audio effects using an auto-encoder approach and differentiable signal processing" to be published in ICASSP 2024
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
