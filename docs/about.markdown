@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: Blind estimation of audio effects using an auto-encoder approach and differentiable signal processing
+permalink: https://peladeaucome.github.io/ICASSP-2024-BEAFX-using-DDSP/
 ---
 
 This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
