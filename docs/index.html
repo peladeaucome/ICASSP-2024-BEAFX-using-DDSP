@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css"/>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Peladeau - ICASSP 2024</title>
+    </head>
     
-</body>
+    <body>
+        <header>
+            <div class="titlecenter"><h1>Estimation of audio effects using an auto-encoder approach and differentiable signal processing</h1></div>
+            <center>
+                <p> <a href="mailto:come.peladeau@telecom-paris.fr">Côme Peladeau</a> and Geoffroy Peeters</p>
+                <p>ADASP Group, LTCI, Institut Polytechnique de Paris.</p>
+                <p>To be published in ICASSP 2024</p>
+                <div class="center" style="max-width: 300px;">
+                    <div class="container">
+                        <div><a href=http://arxiv.org/abs/2310.11781><p>
+                            Article
+                        </p></a></div>
+                        <div><a href=https://github.com/peladeaucome/ICASSP-2024-BEAFX-using-DDSP><p>
+                            Code
+                        </p></a></div>
+                    </div>
+                </div>
+            </center>
+        </header>
+
+
+        <div class="center">
+            <hr>
+            <section>
+                <h2>
+                    Equalization estimation
+                </h2>
+                
+                <p>
+                    Neural networks trained to minimize an FX parameter-based distance (orange curve) or an audio distance (proposed approach, blue curve) are showcased. In this example, the blue curve is closer to the ground truth than the orange in terms of audio distance, but it is actually further in terms of parameter distance.
+                </p>
+                <p>
+                    <center>
+                        <img src="sources/EQ/EQ_Matching.png" alt="Matching an EQ curve" class="pic"> 
+                    </center>
+                </p>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Dynamic range compression matching
+                </h2>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Distortion matching
+                </h2>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Effects chain matching
+                </h2>
+            </section>
+        </div>
+    </body>
 </html>

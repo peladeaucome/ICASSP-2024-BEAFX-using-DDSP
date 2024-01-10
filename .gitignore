@@ -1,2 +1,3 @@
 *.pyc
 tensorboard/*
+docs/Examples/*
