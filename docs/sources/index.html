@@ -9,24 +9,22 @@
     
     <body>
         <header>
-            <div class="titlecenter"><h1>
-                Blind estimation of audio effects using an auto-encoder approach and differentiable signal processing
-            </h1></div>
-            <div class="center">
-                <p style="text-align: center;"> <a href="mailto:come.peladeau@telecom-paris.fr?subject=BEAFX using DDSP">Côme Peladeau</a> and Geoffroy Peeters</p>
-                <p style="text-align: center;">LTCI, Télécom Paris, Institut Polytechnique de Paris, France.</p>
-                <p style="text-align: center;">Accepted to ICASSP 2024</p>
-            </div>
-            <div class="center" style="max-width: 300px;">
-                <div class="container">
-                    <div><a href=http://arxiv.org/abs/2310.11781><p>
-                        arXiv
-                    </p></a></div>
-                    <div><a href=https://github.com/peladeaucome/ICASSP-2024-BEAFX-using-DDSP><p>
-                        Code
-                    </p></a></div>
+            <div class="titlecenter"><h1>Estimation of audio effects using an auto-encoder approach and differentiable signal processing</h1></div>
+            <center>
+                <p> <a href="mailto:come.peladeau@telecom-paris.fr">Côme Peladeau</a> and Geoffroy Peeters</p>
+                <p>LTCI, Télécom Paris, Institut Polytechnique de Paris, France.</p>
+                <p>Accepted to ICASSP 2024</p>
+                <div class="center" style="max-width: 300px;">
+                    <div class="container">
+                        <div><a href=http://arxiv.org/abs/2310.11781><p>
+                            arXiv
+                        </p></a></div>
+                        <div><a href=https://github.com/peladeaucome/ICASSP-2024-BEAFX-using-DDSP><p>
+                            Code
+                        </p></a></div>
+                    </div>
                 </div>
-            </div>
+            </center>
         </header>
 
 
@@ -45,9 +43,6 @@
                     We explore, suggest, and compare various implementations of commonly used mastering AFXs, using differential signal processing or neural approximations. 
                     Our findings demonstrate that our auto-encoder approach yields superior estimates of the audio quality produced by a chain of AFXs,  compared to the traditional parameter-based approach, even if the latter provides a more accurate parameter estimation.
                 </p>
-
-                <img src="sources/Controller_Network_train_english.svg" alt="Proposed approach" class="figure"> 
-                <br>
             </section>
             <hr>
             <section>
@@ -56,30 +51,13 @@
                 </h2>
                 
                 <p>
-                    The figure shows EQ curves estimated by neural networks using either a parametric or a graphic EQ.
-                    Both networks were trained using our approach.
-                    Tey both replicate the general shape of the curve, but fail to match sharp peaks and notches.
+                    Neural networks trained to minimize an FX parameter-based distance (orange curve) or an audio distance (proposed approach, blue curve) are showcased. In this example, the blue curve is closer to the ground truth than the orange in terms of audio distance, but it is actually further in terms of parameter distance.
                 </p>
-                <figure>
-                    <img src="sources/EQ/EQ_Matching.svg" alt="Matching an EQ curve" class="figure">
-                    <figcaption style="text-align: center;">Example of EQ estimation.</figcaption> 
-                </figure>
-
-                <div class="container">
-                    <figure>
-                        <figcaption>Input</figcaption>
-                        <audio controls>
-                            <source src="sources/EQ/Input.wav" type="audio/wav">
-                        </audio> 
-                    </figure>
-
-                    <figure>
-                        <figcaption>Input</figcaption>
-                        <audio controls>
-                            <source src="sources/EQ/peq.wav" type="audio/wav">
-                        </audio> 
-                    </figure>
-                </div>
+                <p>
+                    <center>
+                        <img src="sources/EQ/EQ_Matching.png" alt="Matching an EQ curve" class="pic"> 
+                    </center>
+                </p>
             </section>
             <hr>
             <section>
