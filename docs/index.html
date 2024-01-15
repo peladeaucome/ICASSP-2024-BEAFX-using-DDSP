@@ -20,7 +20,7 @@
             <div class="center" style="max-width: 300px;">
                 <div class="container">
                     <div><a href=http://arxiv.org/abs/2310.11781><p>
-                        arXiv
+                        Preprint (arXiv)
                     </p></a></div>
                     <div><a href=https://github.com/peladeaucome/ICASSP-2024-BEAFX-using-DDSP><p>
                         Code
@@ -58,46 +58,219 @@
                 <p>
                     The figure shows EQ curves estimated by neural networks using either a parametric or a graphic EQ.
                     Both networks were trained using our approach.
-                    Tey both replicate the general shape of the curve, but fail to match sharp peaks and notches.
+                    They both replicate the general shape of the curve, but fail to match sharp peaks and notches.
                 </p>
                 <figure>
-                    <img src="sources/EQ/EQ_Matching.svg" alt="Matching an EQ curve" class="figure">
+                    <img src="sources/EQ/EQ_Matching_10.svg" alt="Matching an EQ curve" class="figure">
                     <figcaption style="text-align: center;">Example of EQ estimation.</figcaption> 
                 </figure>
-
-                <div class="container">
-                    <figure>
-                        <figcaption>Input</figcaption>
-                        <audio controls>
-                            <source src="sources/EQ/Input.wav" type="audio/wav">
-                        </audio> 
-                    </figure>
-
-                    <figure>
-                        <figcaption>Input</figcaption>
-                        <audio controls>
-                            <source src="sources/EQ/peq.wav" type="audio/wav">
-                        </audio> 
-                    </figure>
-                </div>
+                
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Parametric EQ
+                            </td>
+                            <td>
+                                Graphic EQ
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/Input_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/GT_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/peq_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/geq_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
             <hr>
             <section>
                 <h2>
                     Dynamic range compression estimation
                 </h2>
+
+                <p>
+                    Here are the listening examples of dynamic range compression estimation.
+                </p>
+                
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Neural proxy
+                            </td>
+                            <td>
+                                Hybrid proxy
+                            </td>
+                            <td>
+                                Simplified compressor
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/Input_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/GT_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compfull_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/comphalf_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compsimple_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
             <hr>
             <section>
                 <h2>
                     Distortion estimation
                 </h2>
+                
+                <p>
+                    The figure below shows harmonic patterns of the effects applied to an amplitude 1 (0dBFS) sine wave. Note that the effects are memoryless, so they do not depend on the input signal's frequency (except if aliasing). Using the model used for synthesis facilitates the estimation. It also allows for better matching of the upper harmonics without having to many parameters.
+                </p>
+                
+                <figure>
+                    <img src="sources/Distortion/Dist_Matching_10.svg" alt="Matching an EQ curve" class="figure">
+                    <figcaption style="text-align: center;">Example of distortion estimation.</figcaption> 
+                </figure>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Soft clipper
+                            </td>
+                            <td>
+                                Taylor
+                            </td>
+                            <td>
+                                Chebyshev
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/Input_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/GT_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/dist_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/taylor_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/chebyshev_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
             <hr>
             <section>
                 <h2>
                     Effects chain estimation
                 </h2>
+
+                <p>
+                    Here are the listening examples for the entire AFX chain estimation.
+                </p>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Estimation
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/Input_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/GT_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/peq_comphalf_dist_10.wav" type="audio/wav">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         </div>
     </body>

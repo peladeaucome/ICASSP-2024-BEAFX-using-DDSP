@@ -6,8 +6,19 @@
     --telecomRed: #C71748;
 }
 
+audio {
+    width:80%;
+}
+
+table {
+    margin: auto;
+    font-family: Poppins;
+    text-align: center;
+}
+
 figcaption {
     text-align: center;
+    font-family: Poppins;
 }
 
 p {
