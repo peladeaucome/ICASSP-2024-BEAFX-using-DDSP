@@ -333,13 +333,6 @@ class Compressor(FXBase):
         # Setting Controls
 
         p = self.set_controls_to_range(q)
-#
-#        if self.hparams.explicit_thresh:
-#            threshold_dB = p[:, 0].clone().reshape(batch_size, 1, 1)
-#        if self.hparams.explicit_makeup:
-#            makeup_gain_dB = p[:, 5].clone().reshape(batch_size, 1, 1)
-
-        #cond = self.gen(p[:, 1*self.hparams.explicit_thresh:6-1*self.hparams.explicit_makeup].reshape(batch_size, 1, self.learnable_params))
 
         cond = self.gen(q[:, 1*self.hparams.explicit_thresh:6-1*self.hparams.explicit_makeup])
         cond = cond.reshape(batch_size, 1, 32)
@@ -363,14 +356,41 @@ class Compressor(FXBase):
         out = self.out(x, x_in, skips)
         
         out =  self.out_gains(out, p, self.controls_ranges)
-#        if self.hparams.explicit_makeup:
-#            makeup_gain = torch.pow(10., makeup_gain_dB/20)
-#            out = out*makeup_gain
-#        else:
-#            out = out*(10**(self.controls_ranges[5][1]/20))
-#        if self.hparams.explicit_thresh:
-#            out = out*in_gain_threshold
-#        
+
+        return out
+    
+    def get_gains(self, x, q):
+
+        batch_size, num_channels, num_samples = x.size()
+
+
+        # Setting Controls
+
+        p = self.set_controls_to_range(q)
+
+        cond = self.gen(q[:, 1*self.hparams.explicit_thresh:6-1*self.hparams.explicit_makeup])
+        cond = cond.reshape(batch_size, 1, 32)
+
+        x = self.in_gains(x, p, self.controls_ranges)       
+        x_in = x.clone()
+ #       
+        x = self.pad(x)
+
+        # iterate over blocks passing conditioning
+        for idx, block in enumerate(self.blocks):
+            x = block(x, cond)
+            if self.hparams.skip_connections:
+                if idx == 0:
+                    skips = x
+                else:
+                    skips = skips + x
+            else:
+                skips = 0
+
+        out = self.out(x, x_in, skips)
+        
+        out =  self.out_gains(out, p, self.controls_ranges)
+
         return out
 
     
