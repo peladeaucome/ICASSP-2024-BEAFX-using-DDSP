@@ -7,13 +7,15 @@
 }
 
 audio {
-    width:80%;
+    width:100%;
 }
 
 table {
     margin: auto;
     font-family: Poppins;
     text-align: center;
+    table-layout: fixed;
+    width: 100%;
 }
 
 figcaption {
