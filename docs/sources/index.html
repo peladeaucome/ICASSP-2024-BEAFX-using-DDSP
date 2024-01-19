@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="style.css"/>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Peladeau - ICASSP 2024</title>
+    </head>
+    
+    <body>
+        <header>
+            <div class="titlecenter"><h1>Estimation of audio effects using an auto-encoder approach and differentiable signal processing</h1></div>
+            <center>
+                <p> <a href="mailto:come.peladeau@telecom-paris.fr">Côme Peladeau</a> and Geoffroy Peeters</p>
+                <p>LTCI, Télécom Paris, Institut Polytechnique de Paris, France.</p>
+                <p>Accepted to ICASSP 2024</p>
+                <div class="center" style="max-width: 300px;">
+                    <div class="container">
+                        <div><a href=http://arxiv.org/abs/2310.11781><p>
+                            arXiv
+                        </p></a></div>
+                        <div><a href=https://github.com/peladeaucome/ICASSP-2024-BEAFX-using-DDSP><p>
+                            Code
+                        </p></a></div>
+                    </div>
+                </div>
+            </center>
+        </header>
+
+
+        <div class="center">
+            <hr>
+            <section>
+                <h2>
+                    Abstract
+                </h2>
+                <p>
+                    Blind estimation of audio effects (BE-AFX) aims at estimating the audio effects (AFX) applied to an original, unprocessed audio sample solely based on the processed audio sample.
+                    To train such a system, traditional approaches optimize a loss between ground truth and estimated AFX parameters. 
+                    This involves knowing the exact implementation of the AFX used for the process.
+                    In this work, we propose an alternative solution that eliminates the requirement for knowing this implementation. 
+                    Instead, we introduce an auto-encoder approach, which optimizes an audio quality metric. 
+                    We explore, suggest, and compare various implementations of commonly used mastering AFXs, using differential signal processing or neural approximations. 
+                    Our findings demonstrate that our auto-encoder approach yields superior estimates of the audio quality produced by a chain of AFXs,  compared to the traditional parameter-based approach, even if the latter provides a more accurate parameter estimation.
+                </p>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Equalization estimation
+                </h2>
+                
+                <p>
+                    Neural networks trained to minimize an FX parameter-based distance (orange curve) or an audio distance (proposed approach, blue curve) are showcased. In this example, the blue curve is closer to the ground truth than the orange in terms of audio distance, but it is actually further in terms of parameter distance.
+                </p>
+                <p>
+                    <center>
+                        <img src="sources/EQ/EQ_Matching.png" alt="Matching an EQ curve" class="pic"> 
+                    </center>
+                </p>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Dynamic range compression estimation
+                </h2>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Distortion estimation
+                </h2>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Effects chain estimation
+                </h2>
+            </section>
+        </div>
+    </body>
+</html>

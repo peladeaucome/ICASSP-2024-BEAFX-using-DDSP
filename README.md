@@ -11,6 +11,8 @@ This Github repo is still work in progress.
 
 ![image](Images/Controller_Network_train_english.svg)
 
+Audio examples can be found on the [project's Github Page](https://peladeaucome.github.io/ICASSP-2024-BEAFX-using-DDSP/)
+
 ## How to use
 
 Works in `Python 3.10.9`.

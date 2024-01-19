@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="style.css"/>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Peladeau - ICASSP 2024</title>
+    </head>
+    
+    <body>
+        <header>
+            <div class="titlecenter"><h1>
+                Blind estimation of audio effects using an auto-encoder approach and differentiable signal processing
+            </h1></div>
+            <div class="center">
+                <p style="text-align: center;"> <a href="mailto:come.peladeau@telecom-paris.fr?subject=Blind estimation of FX using DDSP">Côme Peladeau</a> and Geoffroy Peeters</p>
+                <p style="text-align: center;">LTCI, Télécom Paris, Institut Polytechnique de Paris, France.</p>
+                <p style="text-align: center;">Accepted to ICASSP 2024</p>
+            </div>
+            <div class="center" style="max-width: 300px;">
+                <div class="container">
+                    <div><a href=http://arxiv.org/abs/2310.11781><p>
+                        Preprint (arXiv)
+                    </p></a></div>
+                    <div><a href=https://github.com/peladeaucome/ICASSP-2024-BEAFX-using-DDSP><p>
+                        Code
+                    </p></a></div>
+                </div>
+            </div>
+        </header>
+
+
+        <div class="center">
+            <hr>
+            <section>
+                <h2>
+                    Abstract
+                </h2>
+                <p>
+                    Blind estimation of audio effects (BE-AFX) aims at estimating the audio effects (AFX) applied to an original, unprocessed audio sample solely based on the processed audio sample.
+                    To train such a system, traditional approaches optimize a loss between ground truth and estimated AFX parameters. 
+                    This involves knowing the exact implementation of the AFX used for the process.
+                    In this work, we propose an alternative solution that eliminates the requirement for knowing this implementation. 
+                    Instead, we introduce an auto-encoder approach, which optimizes an audio quality metric. 
+                    We explore, suggest, and compare various implementations of commonly used mastering AFXs, using differential signal processing or neural approximations. 
+                    Our findings demonstrate that our auto-encoder approach yields superior estimates of the audio quality produced by a chain of AFXs,  compared to the traditional parameter-based approach, even if the latter provides a more accurate parameter estimation.
+                </p>
+
+                <img src="sources/Controller_Network_train_english.svg" alt="Proposed approach" class="figure"> 
+                <br>
+                <hr>
+                <p>
+                    The audios labelled as "Input" are the unprocessed mixes, the "Ground Truth" are the processed audios to be reproduced and the others are the estimations of the gound truth.
+                    The figures were drawn using the first row of the tables.
+                </p>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Equalization estimation
+                </h2>
+                
+                <p>
+                    The figure shows EQ curves estimated by neural networks using either a parametric or a graphic EQ.
+                    Both networks were trained using our approach.
+                    They both replicate the general shape of the curve, but fail to match sharp peaks and notches.
+                </p>
+                <figure>
+                    <img src="sources/EQ/EQ_Matching_10.svg" alt="Matching an EQ curve" class="figure">
+                    <figcaption style="text-align: center;">Ground truth and estimated EQ curves.</figcaption> 
+                </figure>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Parametric EQ
+                            </td>
+                            <td>
+                                Graphic EQ
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/Input_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/GT_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/peq_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/geq_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/Input_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/GT_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/peq_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/geq_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/Input_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/GT_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/peq_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/geq_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/Input_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/GT_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/peq_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/EQ/geq_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Dynamic range compression estimation
+                </h2>
+
+                <p>
+                    Here are the listening examples of dynamic range compression estimation.
+                </p>
+                
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Neural proxy
+                            </td>
+                            <td>
+                                Hybrid proxy
+                            </td>
+                            <td>
+                                Simplified compressor
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/Input_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/GT_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compfull_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/comphalf_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compsimple_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/Input_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/GT_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compfull_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/comphalf_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compsimple_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/Input_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/GT_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compfull_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/comphalf_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compsimple_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/Input_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/GT_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compfull_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/comphalf_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Compressor/compsimple_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Distortion estimation
+                </h2>
+                
+                <p>
+                    The figure below shows harmonic patterns of the effects applied to an amplitude 1 (0dBFS) sine wave. Note that the effects are memoryless, so they do not depend on the input signal's frequency (except if aliasing). Using the model used for synthesis facilitates the estimation. It also allows for better matching of the upper harmonics without having too many parameters.
+                </p>
+                
+                <figure>
+                    <img src="sources/Distortion/Dist_Matching_10.svg" alt="Matching an EQ curve" class="figure">
+                    <figcaption style="text-align: center;">Harmonics patterns of ground truth and estimated memoryless distortions.</figcaption> 
+                </figure>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Soft clipper
+                            </td>
+                            <td>
+                                Taylor
+                            </td>
+                            <td>
+                                Chebyshev
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/Input_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/GT_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/dist_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/taylor_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/chebyshev_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/Input_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/GT_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/dist_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/taylor_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/chebyshev_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/Input_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/GT_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/dist_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/taylor_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/chebyshev_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/Input_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/GT_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/dist_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/taylor_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Distortion/chebyshev_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <hr>
+            <section>
+                <h2>
+                    Effects chain estimation
+                </h2>
+
+                <p>
+                    Here are the listening examples for the entire AFX chain estimation.
+                </p>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Input
+                            </td>
+                            <td>
+                                Ground truth
+                            </td>
+                            <td>
+                                Estimation
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/Input_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/GT_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/peq_comphalf_dist_10.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/Input_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/GT_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/peq_comphalf_dist_3.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/Input_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/GT_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/peq_comphalf_dist_25.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/Input_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/GT_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                            <td>
+                                <audio controls>
+                                    <source src="sources/Chain/peq_comphalf_dist_26.opus" type="audio/ogg">
+                                </audio> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </body>
+</html>
