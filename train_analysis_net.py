@@ -33,8 +33,8 @@ encoder_normalization = audio_quality_estimation.normalize.max_norm
 
 
 
-pathToMUSDB18='/home/ids/peladeau/Data/MUSDB18'
-root_dir = '/tsi/data_doctorants/peladeau'
+pathToMUSDB18=''
+root_dir = ''
 
 num_epochs = 400
 
